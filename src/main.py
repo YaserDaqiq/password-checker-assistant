@@ -1,14 +1,13 @@
 from scoring import score_password
+from assistant import generate_suggestions
 
 
 def main():
-    # 1) Benutzer gibt ein Passwort ein
     password = input("Bitte gib ein Passwort ein: ")
 
-    # 2) Algorithmus aus scoring.py aufrufen
     result = score_password(password)
+    suggestions = generate_suggestions(result)
 
-    # 3) Resultat ausgeben
     print("\n--- Ergebnis ---")
     print(f"Passwortlänge: {result['password_length']}")
     print(f"Entropie: {result['entropy_bits']:.1f} bits")
@@ -18,6 +17,10 @@ def main():
     print("\nBegründungen:")
     for reason in result["reasons"]:
         print(f"- {reason}")
+
+    print("\nVerbesserungsvorschläge:")
+    for suggestion in suggestions:
+        print(f"- {suggestion}")
 
 
 if __name__ == "__main__":
