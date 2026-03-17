@@ -65,5 +65,3 @@ python3 -m pytest -q
 Yaser Daqiq – TEKO Schweizerische Fachschule, Luzern
 Klasse: TIP-25-Di-1
 ```
-
----
