@@ -1,8 +1,15 @@
+# assistant.py
+# Erzeugt Verbesserungsvorschläge auf Basis
+# der erkannten Schwächen eines Passworts.
+
 def generate_suggestions(result: dict) -> list:
+    # Speichert alle Verbesserungsvorschläge in einer Liste.
     suggestions = []
 
+    # Holt die Begründungen aus dem Bewertungsergebnis.
     reasons = result["reasons"]
 
+    # Prüft jede Begründung und erzeugt dazu passende Verbesserungstipps.
     for reason in reasons:
         if "Zu kurz" in reason:
             suggestions.append("Verlängere das Passwort auf mindestens 12 Zeichen.")
@@ -31,7 +38,9 @@ def generate_suggestions(result: dict) -> list:
         if "Niedrige Entropie" in reason:
             suggestions.append("Verwende mehr unterschiedliche Zeichen, damit das Passwort schwerer zu erraten ist.")
 
+    # Falls keine Schwäche gefunden wurde, wird ein positiver Standardhinweis ausgegeben.
     if not suggestions:
         suggestions.append("Das Passwort ist bereits gut aufgebaut. Behalte trotzdem eine ausreichende Länge bei.")
 
+    # Gibt die Liste mit allen Vorschlägen zurück.
     return suggestions
